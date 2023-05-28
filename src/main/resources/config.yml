@@ -7,5 +7,6 @@ prices:
 
 other:
   #please put the time in ticks (seconds times 20) that you would like that the villagers from these items take to despawn
+  #if you do not want them to despawn, set it to 0
   manlauncherdespawntime: 100
   manswarmdespawntime: 100
