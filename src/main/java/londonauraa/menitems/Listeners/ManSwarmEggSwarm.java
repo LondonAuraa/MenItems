@@ -34,8 +34,10 @@ public class ManSwarmEggSwarm implements Listener {
                 Entity spawnedVillager = world.spawnEntity(event.getHitBlock().getLocation(), EntityType.VILLAGER);
                 Entity spawnedBat = world.spawnEntity(event.getHitBlock().getLocation(), EntityType.BAT);
                 spawnedBat.addPassenger(spawnedVillager);
-                BukkitTask clearvillager = new clearEntity(this.plugin, spawnedVillager).runTaskLater(this.plugin, despawnTime);
-                BukkitTask clearbat = new clearEntity(this.plugin, spawnedBat).runTaskLater(this.plugin, despawnTime);
+                if(!(despawnTime == 0)) {
+                    BukkitTask clearvillager = new clearEntity(this.plugin, spawnedVillager).runTaskLater(this.plugin, despawnTime);
+                    BukkitTask clearbat = new clearEntity(this.plugin, spawnedBat).runTaskLater(this.plugin, despawnTime);
+                }
             }
         }
     }
