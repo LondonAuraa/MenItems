@@ -49,7 +49,7 @@ public class OnRightClickForLauncher implements Listener {
                 }else{
                     spawnedVillager.setVelocity(direction.multiply(3));
                 }
-                BukkitTask clearvillager = new clearEntity(this.plugin, spawnedVillager).runTaskLater(this.plugin, despawnTime);
+                if(!(despawnTime == 0)) {BukkitTask clearvillager = new clearEntity(this.plugin, spawnedVillager).runTaskLater(this.plugin, despawnTime);}
 
 
             }
