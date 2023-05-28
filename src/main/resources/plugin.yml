@@ -1,0 +1,20 @@
+name: MenItems
+version: '${1.1.2}'
+main: londonauraa.menitems.Main
+api-version: 1.19
+depend: [Vault]
+commands:
+  man:
+    description: Spawns a man (Villager)
+    usage: /man (amount) (Flying true/false)
+    permission: manitems.spawnman
+
+  giveman:
+    description: Give one of the plugin items
+    Usage: /giveman (mermanrod, manlauncher, manswarmegg)
+    permission: manitems.mangive
+
+  mangui:
+    description: Opens the plugin's GUI
+    usage: /mangui
+    permission: manitems.mangui

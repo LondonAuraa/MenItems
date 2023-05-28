@@ -1,0 +1,11 @@
+prices:
+  #If you do not want to use prices or you do not have vault, you must download version 1.0.
+  #Also, please keep atleast one decimal place in these prices like shown.
+  manlauncher: 100.0
+  manswarmegg: 10.0
+  manrod: 200.0
+
+other:
+  #please put the time in ticks (seconds times 20) that you would like that the villagers from these items take to despawn
+  manlauncherdespawntime: 100
+  manswarmdespawntime: 100
