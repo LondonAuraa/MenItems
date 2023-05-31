@@ -5,7 +5,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 
-public class clearEntity extends BukkitRunnable {
+public class ClearEntity extends BukkitRunnable {
     private final JavaPlugin plugin;
     public Entity villager;
     public clearEntity(JavaPlugin plugin, Entity entity){
