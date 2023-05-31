@@ -1,7 +1,7 @@
 package londonauraa.menitems.Listeners;
 
 import londonauraa.menitems.Main;
-import londonauraa.menitems.scheduleds.clearEntity;
+import londonauraa.menitems.scheduleds.ClearEntity;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -11,7 +11,6 @@ import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
 import java.util.HashSet;
@@ -27,7 +26,7 @@ public class ManSwarmEggSwarm implements Listener {
         FileConfiguration config = plugin.getConfig();
         despawnTime = config.getLong("other.manswarmdespawntime");
     }
-                            @EventHandler
+    @EventHandler
     public void onEggHit(ProjectileHitEvent event){
         if(eggs.contains(event.getEntity())){
             for (int i = 0; i < 10; i++) {
@@ -35,10 +34,11 @@ public class ManSwarmEggSwarm implements Listener {
                 Entity spawnedBat = world.spawnEntity(event.getHitBlock().getLocation(), EntityType.BAT);
                 spawnedBat.addPassenger(spawnedVillager);
                 if(!(despawnTime == 0)) {
-                    BukkitTask clearvillager = new clearEntity(this.plugin, spawnedVillager).runTaskLater(this.plugin, despawnTime);
-                    BukkitTask clearbat = new clearEntity(this.plugin, spawnedBat).runTaskLater(this.plugin, despawnTime);
+                    BukkitTask clearvillager = new ClearEntity(this.plugin, spawnedVillager).runTaskLater(this.plugin, despawnTime);
+                    BukkitTask clearbat = new ClearEntity(this.plugin, spawnedBat).runTaskLater(this.plugin, despawnTime);
                 }
             }
         }
     }
 }
+
