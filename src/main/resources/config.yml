@@ -1,12 +1,19 @@
 prices:
+
   #If you do not want to use prices or you do not have vault, you must download version 1.0.
-  #Also, please keep atleast one decimal place in these prices like shown.
+  #Also, please keep atleast one decimal place in these prices like given.
   manlauncher: 100.0
   manswarmegg: 10.0
   manrod: 200.0
 
 other:
-  #please put the time in ticks (seconds times 20) that you would like that the villagers from these items take to despawn
-  #if you do not want them to despawn, set it to 0
-  manlauncherdespawntime: 100
+
+  #please put the time in ticks (seconds times 20) that you would like that the villagers from these items take to despawn (or explode: see below)
+  #if you do not want them to despawn/explode, set it to 0
+  manlauncherdespawntime: 15
   manswarmdespawntime: 100
+
+
+  #the "manlauncherexplosion" option, when set to true, will explode the villagers from the man launcher after the given time in ticks set above.
+  #Set it to "true"or "false
+  manlauncherexplosion: true
