@@ -1,16 +1,20 @@
 package londonauraa.menitems.Listeners;
 
+import londonauraa.menitems.Items.Items;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 
 import static londonauraa.menitems.Items.Items.manLauncher;
 
 public class LauncherChangePower implements Listener {
+    Items itemlists = new Items();
+    ItemStack manLauncher = itemlists.returnItem(2);
     @EventHandler
     public void onRightClickAndShifting (PlayerInteractEvent event){
 
