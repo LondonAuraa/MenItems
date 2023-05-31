@@ -18,9 +18,10 @@ import static londonauraa.menitems.Commands.GUICommand.gui;
 import static londonauraa.menitems.Main.plugin;
 
 public class OnGUIClick implements Listener {
-    ItemStack manRod = Items.createManRod();
-    ItemStack manLauncher = Items.createManLauncher();
-    ItemStack manSwarmEgg = Items.createManSwarmEgg();
+    Items itemlists = new Items();
+    ItemStack manRod = itemlists.returnItem(1);
+    ItemStack manLauncher = itemlists.returnItem(2);
+    ItemStack manSwarmEgg = itemlists.returnItem(0);
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event){
@@ -32,27 +33,27 @@ public class OnGUIClick implements Listener {
             Double manrodprice = Double.valueOf(config.get("prices.manrod").toString());
             Double manlauncherprice = Double.valueOf(config.get("prices.manlauncher").toString());
             Double manswarmeggprice = Double.valueOf(config.get("prices.manswarmegg").toString());
-            if (slot == 20){
+            if (slot == 29){
                 if (economy.has(player, manrodprice)){
                     player.getInventory().addItem(manRod);
-                    player.sendMessage("You have bought the man rod for "+ ChatColor.GOLD + config.get("prices.manrod"));
+                    player.sendMessage("You have bought the "+ChatColor.RED+  "man rod for "+ ChatColor.GOLD + config.get("prices.manrod"));
                     economy.withdrawPlayer(player, (Double) config.get("prices.manrod"));
                 }else{
                     player.sendMessage("You don't have enough money for this!");
                 }
 
-            }else if(slot == 22){
+            }else if(slot == 31){
                 if (economy.has(player, manlauncherprice)){
                     player.getInventory().addItem(manLauncher);
-                    player.sendMessage("You have bought the man launcher for "+ ChatColor.GOLD + config.get("prices.manlauncher"));
+                    player.sendMessage("You have bought the "+ChatColor.RED+  "man launcher for "+ ChatColor.GOLD + config.get("prices.manlauncher"));
                     economy.withdrawPlayer(player, (Double) config.get("prices.manlauncher"));
                 }else{
                     player.sendMessage("You don't have enough money for this!");
                 }
-            }else if (slot == 24){
+            }else if (slot == 33){
                 if (economy.has(player, manswarmeggprice)){
                     player.getInventory().addItem(manSwarmEgg);
-                    player.sendMessage("You have bought a man swarm egg for "+ ChatColor.GOLD + config.get("prices.manswarmegg"));
+                    player.sendMessage("You have bought a "+ChatColor.RED+  "man swarm egg for "+ ChatColor.GOLD + config.get("prices.manswarmegg"));
                     economy.withdrawPlayer(player, (Double) config.get("prices.manswarmegg"));
                 }else{
                     player.sendMessage("You don't have enough money for this!");
@@ -64,4 +65,3 @@ public class OnGUIClick implements Listener {
         }
     }
 }
-
