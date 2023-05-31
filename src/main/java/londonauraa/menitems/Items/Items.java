@@ -10,19 +10,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Items {
-    public static ItemStack manSwarmEgg;
-    public static ItemStack manRod;
     public static ItemStack manLauncher;
-    public static ItemStack infobook;
+    private List<ItemStack> items = new ArrayList<>();
 
-
-    public static void init(){
-        createManSwarmEgg();
-        createManRod();
-        createManLauncher();
-        createInfoBook();
+    public Items(){
+        items.add(createManSwarmEgg());
+        items.add(createManRod());
+        items.add(createManLauncher());
+        items.add(createInfoBook());
     }
-    public static ItemStack createManSwarmEgg(){
+
+    public ItemStack returnItem (int index){
+        return items.get(index);
+    }
+
+
+
+    public ItemStack createManSwarmEgg(){
         ItemStack item = new ItemStack(Material.EGG, 1);
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName("Man Swarm Egg");
@@ -33,7 +37,7 @@ public class Items {
         item.setItemMeta(meta);
         return item;
     }
-    public static ItemStack createManRod(){
+    public ItemStack createManRod(){
         ItemStack rod = new ItemStack(Material.FISHING_ROD,1);
         ItemMeta rodmeta = rod.getItemMeta();
         rodmeta.setDisplayName("Merman Rod");
@@ -44,7 +48,7 @@ public class Items {
         rod.setItemMeta(rodmeta);
         return rod;
     }
-    public static ItemStack createManLauncher(){
+    public ItemStack createManLauncher(){
         ItemStack launcher = new ItemStack(Material.STICK,1);
         ItemMeta rodmeta = launcher.getItemMeta();
         rodmeta.setDisplayName("Man Launcher");
@@ -57,7 +61,7 @@ public class Items {
         return launcher;
     }
 
-    public static void createInfoBook(){
+    public ItemStack createInfoBook(){
         ItemStack book = new ItemStack(Material.BOOK, 1);
         ItemMeta bookmeta = book.getItemMeta();
         bookmeta.setDisplayName("Information");
@@ -67,7 +71,6 @@ public class Items {
         bookmeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         bookmeta.addEnchant(Enchantment.LUCK, 1, true);
         book.setItemMeta(bookmeta);
-
-        infobook = book;
+        return book;
     }
 }
