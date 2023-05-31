@@ -6,6 +6,7 @@ import londonauraa.menitems.Commands.ManGiveCommands;
 import londonauraa.menitems.Items.Items;
 import londonauraa.menitems.Listeners.*;
 import net.milkbowl.vault.economy.Economy;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -15,15 +16,18 @@ public final class Main extends JavaPlugin {
     private static Economy econ = null;
     private static final Logger log = Logger.getLogger("Minecraft");
     public static Main plugin;
+    private FileConfiguration config;
 
     @Override
     public void onEnable() {
         // Plugin startup logic
         plugin = this;
         saveDefaultConfig();
+
         this.getCommand("mangui").setExecutor(new GUICommand());
         this.getCommand("man").setExecutor(new CommandMan());
         this.getCommand("giveman").setExecutor(new ManGiveCommands());
+
         getServer().getPluginManager().registerEvents(new ManSwarmEggSwarm(plugin), this);
         getServer().getPluginManager().registerEvents(new OnGUIClick(), this);
         getServer().getPluginManager().registerEvents(new LauncherChangePower(), this);
@@ -31,7 +35,8 @@ public final class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new OnProjectileLaunching(), this);
         getServer().getPluginManager().registerEvents(new FishMen(), this);
         getServer().getPluginManager().registerEvents(new OnMermanKill(), this);
-        Items.init();
+
+
         if (!setupEconomy() ) {
             log.severe(String.format("[%s] - Disabled due to no Vault dependency found!", getDescription().getName()));
             getServer().getPluginManager().disablePlugin(this);
