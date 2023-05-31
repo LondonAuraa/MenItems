@@ -1,7 +1,8 @@
 package londonauraa.menitems.Listeners;
 
 import londonauraa.menitems.Main;
-import londonauraa.menitems.scheduleds.clearEntity;
+import londonauraa.menitems.scheduleds.ClearEntity;
+import londonauraa.menitems.scheduleds.VillagerExplosion;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -13,22 +14,22 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 
 import java.util.List;
 
-import static londonauraa.menitems.Main.plugin;
 
 public class OnRightClickForLauncher implements Listener {
 
     private final Main plugin;
     Long despawnTime;
+    Boolean doesExplode;
     public OnRightClickForLauncher(Main plugin){
         this.plugin = plugin;
         FileConfiguration config = plugin.getConfig();
         despawnTime = config.getLong("other.manlauncherdespawntime");
+        doesExplode = config.getBoolean("other.manlauncherexplosion");
     }
 
     @EventHandler
@@ -49,7 +50,14 @@ public class OnRightClickForLauncher implements Listener {
                 }else{
                     spawnedVillager.setVelocity(direction.multiply(3));
                 }
-                if(!(despawnTime == 0)) {BukkitTask clearvillager = new clearEntity(this.plugin, spawnedVillager).runTaskLater(this.plugin, despawnTime);}
+
+                if (doesExplode ) {
+                    if (!(despawnTime==0)){
+                        BukkitTask explodeVillager = new VillagerExplosion(this.plugin, spawnedVillager).runTaskLater(this.plugin, despawnTime);
+                    }
+                }else{
+                    BukkitTask clearVillager = new ClearEntity(this.plugin, spawnedVillager).runTaskLater(this.plugin, despawnTime);
+                }
 
 
             }
