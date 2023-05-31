@@ -9,15 +9,17 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerFishEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static londonauraa.menitems.Items.Items.manRod;
 
 public class FishMen implements Listener {
+    Items itemlists = new Items();
+    ItemStack manRod = itemlists.returnItem(2);
     public static List<Entity> glowingVillagers= new ArrayList<>();
     World world = Bukkit.getWorld("world");
     @EventHandler
@@ -25,7 +27,7 @@ public class FishMen implements Listener {
         Location playerlocation = event.getPlayer().getLocation();
         Location hooklocation = event.getHook().getLocation();
         if (event.getState() == PlayerFishEvent.State.CAUGHT_FISH){
-            if(event.getPlayer().getInventory().getItemInMainHand().getItemMeta().getLore().equals(Items.createManRod().getItemMeta().getLore())){
+            if(event.getPlayer().getInventory().getItemInMainHand().getItemMeta().getLore().equals(manRod.getItemMeta().getLore())){
                 Random getglowingmerman = new Random();
                 int didgetglowingmerman = getglowingmerman.nextInt(30);
                 Entity spawnedVillager = world.spawnEntity((event.getHook().getLocation()), EntityType.VILLAGER);
